@@ -1,0 +1,61 @@
+<!DOCTYPE html>{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>{% block title %}Untitled page{% endblock %} - Словарик</title>
+
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap-responsive.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/clusterize.css' %}" rel="stylesheet">
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/styles/default.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <script
+            src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+            crossorigin="anonymous"></script>
+
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/clusterize.min.js' %}"></script>
+    {% block scripts %}
+        {# for add.- and edit.html #}
+    {% endblock %}
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{% url 'home' %}">Главная</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                {% if user.is_anonymous %}
+                    <li><a href="{% url 'admin:login' %}">Войти в систему</a></li>
+                {% else %}
+                    <li><a href="{% url 'show' %}">Просмотр</a></li>
+                    <li><a href="{% url 'add' %}">Добавить</a></li>
+                    <li><a href="{% url 'admin:index' %}">Админка</a></li>
+                    <li><a href="{% url 'admin:logout' %}?next=/">
+                        Выйти (<span style="color: lime">{{ user.username }}</span>)
+                    </a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container" style="{% if full_width %}width: 100% !important;{% endif %}">
+    <div class="main">
+        {% block content %}{% endblock %}
+        {% include 'include/footer.html' %}
+    </div>
+</div>
+
+</body>
+</html>

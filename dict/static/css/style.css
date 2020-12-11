@@ -1,0 +1,83 @@
+body {
+    background-image: url("../img/bg.jpg");
+    background-size: 150px;
+    background-color: rgba(255, 255, 255, 0.5) !important;
+    background-blend-mode: color;
+    opacity: 0.9;
+}
+
+nav {
+    opacity: 0.8;
+}
+
+.main {
+    font-size: 16px;
+}
+
+h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+h3 {
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+.selected {
+    background-color: cyan !important;
+}
+
+.header-info {
+    background-color: mediumseagreen;
+    opacity: 0.8;
+}
+
+form input {
+    font-weight: normal;
+}
+
+.form-group {
+    width: 100% !important;
+}
+
+.block {
+    width: 25%;
+    float: left;
+}
+
+div .part_speech_items {
+    width: 20%;
+    float: left;
+}
+
+.tag {
+    width: 392% !important;
+}
+
+.form-control .element {
+    width: 120% !important;
+}
+
+.my_btn {
+    width: 70% !important;
+}
+
+img {
+    width: 15px;
+    height: 15px;
+}
+
+ul.error_list {
+    color: red;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+ul.error_list li {
+    list-style-type: none;
+}
+
+.inline-errors ul.error_list, .inline-errors ul.error_list li {
+    display: inline;
+}

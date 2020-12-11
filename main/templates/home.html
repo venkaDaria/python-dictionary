@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}О сайте{% endblock %}
+
+{% block content %}
+    <h2>Об этом сайте</h2>
+    <div>
+        {#        Данный сервис предназначен для Дашеньки B-)#}
+        ...
+    </div>
+    {% if not user.is_anonymous %}
+        <br/>
+        <br/>
+
+        <div>
+            <h4>Последние 5 слов</h4>
+            <ul class="list-group">
+                {% for chain in chain_list %}
+                    <li class="list-group-item">
+                        <a href="/detail/{{ chain.id }}">{{ chain.ru_block }}</a> ({{ chain.en_block }}
+                        - {{ chain.de_block }})
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+{% endblock %}

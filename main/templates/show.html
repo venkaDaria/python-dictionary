@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}Список слов{% endblock %}
+
+{% block content %}
+    <h2>Список слов</h2>
+    <div style="margin-bottom: 20px; font-size: 14px; color: gray;">
+        Дополнительно:
+        <a href="{% url 'show' %}?o=name">сортировка по имени,</a>
+        <a href="{% url 'show' %}?o=tag">сортировка по тэгам, </a>
+        <a href="{% url 'show' %}?o=part_speech">сортировка по частям речи</a>
+    </div>
+    <div>
+        <form method="post">
+            {% csrf_token %}
+            <label><input type="search" class="form-control element" id="searchWord" value="{{ request.POST.search }}"
+                          name="search" placeholder="Например: девочка" style="width:540%; font-weight: normal"></label>
+            <input type="submit" class="btn btn-success" value="Искать" style="float:right">
+        </form>
+    </div>
+    <br>
+    <div class="elements">
+        <table class="table table-hover table-bordered">
+            <thead>
+            <tr class="header-info">
+                <td>Русский</td>
+                <td>English</td>
+                <td>Deutsch</td>
+                <td>Тэг</td>
+                <td>Часть речи</td>
+                <td></td>
+                <td></td>
+            </tr>
+            </thead>
+            <tbody>
+            {% for chain in chains %}
+                <tr>
+                    <td>
+                        {% for word in chain.ru_block.ordered_words %}
+                            {{ word }}{% if word.info %} <i>({{ word.info }})</i>{% endif %}{% if not forloop.last %},
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for word in chain.en_block.ordered_words %}
+                            {{ word }}{% if word.info %} <i>({{ word.info }})</i>{% endif %}{% if not forloop.last %},
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for word in chain.de_block.ordered_words %}
+                            {{ word }}{% if word.info %} <i>({{ word.info }})</i>{% endif %}{% if not forloop.last %},
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td style="background-color: {{ chain.tag.color }}; opacity: 0.8">{{ chain.tag }}</td>
+                    <td>{{ chain.part_speech }}</td>
+                    <td><a href="/edit/{{ chain.id }}"><img src="{% static 'img/edit.png' %}"/></a></td>
+                    <td><a href="/delete/{{ chain.id }}"><img src="{% static 'img/remove.png' %}"/></a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

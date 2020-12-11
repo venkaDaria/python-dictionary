@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% block title %}Посмотреть цепочку слов{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        $(function () {
+            $('.part_speech_items a[data-value="{{ chain.part_speech }}"]').addClass('selected');
+            $("#show_form").find(":input").prop("disabled", true);
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+    <h2>Посмотреть цепочку слов</h2>
+    <form class="form-inline" method="post" id="show_form">
+        <div class="form-group">
+            <div class="block">
+                Русский
+                <br>
+                <label><input type="text" class="form-control element" id="ru_value"
+                              value="{{ chain.ru_block.ordered_words.0.value }}"
+                              name="ru_value1" placeholder="Слово" required autofocus></label>
+                <br>
+                <label><input type="text" class="form-control element" id="ru_info"
+                              value="{{ chain.ru_block.ordered_words.0.info }}"
+                              name="ru_info1" placeholder="Информация"></label>
+                <br><br>
+                <label><input type="text" class="form-control element" id="ru_value2"
+                              value="{{ chain.ru_block.ordered_words.1.value }}"
+                              name="ru_value2" placeholder="Слово"></label>
+                <br>
+                <label><input type="text" class="form-control element" id="ru_info2"
+                              value="{{ chain.ru_block.ordered_words.1.info }}"
+                              name="ru_info2" placeholder="Информация"></label>
+                <br><br>
+                <label><input type="text" class="form-control element" id="ru_value3"
+                              value="{{ chain.ru_block.ordered_words.2.value }}"
+                              name="ru_value3" placeholder="Слово"></label>
+                <br>
+                <label><input type="text" class="form-control element" id="ru_info3"
+                              value="{{ chain.ru_block.ordered_words.2.info }}"
+                              name="ru_info3" placeholder="Информация"></label>
+                <br><br>
+                Тэг (тема)
+                <br>
+                <label><input type="text" class="form-control element tag" id="tag" value="{{ chain.tag.name }}"
+                              name="tag" placeholder="Например: семья" required></label>
+            </div>
+            <div class="block">
+                English
+                <br>
+                <label><input type="text" class="form-control element" id="en_value"
+                              value="{{ chain.en_block.ordered_words.0.value }}"
+                              name="en_value1" placeholder="Слово" required></label>
+                <br>
+                <label><input type="text" class="form-control element" id="en_info"
+                              value="{{ chain.en_block.ordered_words.0.info }}"
+                              name="en_info1" placeholder="Информация"></label>
+                <br><br>
+                <label><input type="text" class="form-control element" id="en_value2"
+                              value="{{ chain.en_block.ordered_words.1.value }}"
+                              name="en_value2" placeholder="Слово"></label>
+                <br>
+                <label><input type="text" class="form-control element" id="en_info2"
+                              value="{{ chain.en_block.ordered_words.1.info }}"
+                              name="en_info2" placeholder="Информация"></label>
+                <br><br>
+                <label><input type="text" class="form-control element" id="en_value3"
+                              value="{{ chain.en_block.ordered_words.2.value }}"
+                              name="en_value3" placeholder="Слово"></label>
+                <br>
+                <label><input type="text" class="form-control element" id="en_info3"
+                              value="{{ chain.en_block.ordered_words.2.info }}"
+                              name="en_info3" placeholder="Информация"></label>
+            </div>
+            <div class="block">
+                Deutsch
+                <br>
+                <label><input type="text" class="form-control element" id="de_value"
+                              value="{{ chain.de_block.ordered_words.0.value }}"
+                              name="de_value1" placeholder="Слово" required></label>
+                <br>
+                <label><input type="text" class="form-control element" id="de_info"
+                              value="{{ chain.de_block.ordered_words.0.info }}"
+                              name="de_info1" placeholder="Информация"></label>
+                <br><br>
+                <label><input type="text" class="form-control element" id="de_value2"
+                              value="{{ chain.de_block.ordered_words.1.value }}"
+                              name="de_value2" placeholder="Слово"></label>
+                <br>
+                <label><input type="text" class="form-control element" id="de_info2"
+                              value="{{ chain.de_block.ordered_words.1.info }}"
+                              name="de_info2" placeholder="Информация"></label>
+                <br><br>
+                <label><input type="text" class="form-control element" id="de_value3"
+                              value="{{ chain.de_block.ordered_words.2.value }}"
+                              name="de_value3" placeholder="Слово"></label>
+                <br>
+                <label><input type="text" class="form-control element" id="de_info3"
+                              value="{{ chain.de_block.ordered_words.2.info }}"
+                              name="de_info3" placeholder="Информация"></label>
+                <br><br><br><br><br><br>
+            </div>
+            <div class="list-group part_speech_items">
+                Часть речи <br>
+                <a class="list-group-item disabled" data-value="сущ">Существительное</a>
+                <a class="list-group-item disabled" data-value="прил">Прилагательное</a>
+                <a class="list-group-item disabled" data-value="наречие">Наречие</a>
+                <a class="list-group-item disabled" data-value="глагол">Глагол</a>
+                <a class="list-group-item disabled" data-value="числ">Числительное</a>
+                <a class="list-group-item disabled" data-value="местоим">Местоимение</a>
+                <a class="list-group-item disabled" data-value="союз">Союз</a>
+                <a class="list-group-item disabled" data-value="предлог">Предлог</a>
+                <a class="list-group-item disabled" data-value="частица">Частица</a>
+                <a class="list-group-item disabled" data-value="междом">Междометие</a>
+            </div>
+        </div>
+    </form>
+{% endblock %}

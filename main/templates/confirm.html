@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Подтверждение удаления{% endblock %}
+
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <p>Вы уверены, что хотите удалить {{ chain }}?</p>
+        <input type="submit" class="btn btn-danger" value="Да, подтверждаю"/>
+    </form>
+    <br/>
+    <a href="javascript:history.back()">Нет, не удалять</a>
+{% endblock %}

@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block title %}Добавить цепочку слов{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        $(function () {
+            $('.part_speech_items a').on('click', function () {
+                $('.part_speech_items a').removeClass('selected');
+
+                var value = $(this).data('value');
+
+                $(this).addClass('selected');
+                $('input[name=part_speech]').val(value);
+            })
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+    <h2>Добавить цепочку слов</h2>
+    <form class="form-inline" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <div class="block">
+                Русский
+                <br>
+                <label><input type="text" class="form-control element" id="ru_value"
+                              name="ru_value1" placeholder="Слово" required autofocus></label>
+                <br>
+                <label><input type="text" class="form-control element" id="ru_info"
+                              name="ru_info1" placeholder="Информация"></label>
+                <br><br>
+                <label><input type="text" class="form-control element" id="ru_value2"
+                              name="ru_value2" placeholder="Слово"></label>
+                <br>
+                <label><input type="text" class="form-control element" id="ru_info2"
+                              name="ru_info2" placeholder="Информация"></label>
+                <br><br>
+                <label><input type="text" class="form-control element" id="ru_value3"
+                              name="ru_value3" placeholder="Слово"></label>
+                <br>
+                <label><input type="text" class="form-control element" id="ru_info3"
+                              name="ru_info3" placeholder="Информация"></label>
+                <br><br>
+                Тэг (тема)
+                <br>
+                <label><input type="text" class="form-control element tag" id="tag"
+                              name="tag" placeholder="Например: семья" required></label>
+            </div>
+            <div class="block">
+                English
+                <br>
+                <label><input type="text" class="form-control element" id="en_value"
+                              name="en_value1" placeholder="Слово" required></label>
+                <br>
+                <label><input type="text" class="form-control element" id="en_info"
+                              name="en_info1" placeholder="Информация"></label>
+                <br><br>
+                <label><input type="text" class="form-control element" id="en_value2"
+                              name="en_value2" placeholder="Слово"></label>
+                <br>
+                <label><input type="text" class="form-control element" id="en_info2"
+                              name="en_info2" placeholder="Информация"></label>
+                <br><br>
+                <label><input type="text" class="form-control element" id="en_value3"
+                              name="en_value3" placeholder="Слово"></label>
+                <br>
+                <label><input type="text" class="form-control element" id="en_info3"
+                              name="en_info3" placeholder="Информация"></label>
+            </div>
+            <div class="block">
+                Deutsch
+                <br>
+                <label><input type="text" class="form-control element" id="de_value"
+                              name="de_value1" placeholder="Слово" required></label>
+                <br>
+                <label><input type="text" class="form-control element" id="de_info"
+                              name="de_info1" placeholder="Информация"></label>
+                <br><br>
+                <label><input type="text" class="form-control element" id="de_value2"
+                              name="de_value2" placeholder="Слово"></label>
+                <br>
+                <label><input type="text" class="form-control element" id="de_info2"
+                              name="de_info2" placeholder="Информация"></label>
+                <br><br>
+                <label><input type="text" class="form-control element" id="de_value3"
+                              name="de_value3" placeholder="Слово"></label>
+                <br>
+                <label><input type="text" class="form-control element" id="de_info3"
+                              name="de_info3" placeholder="Информация"></label>
+                <br><br><br><br><br><br>
+                <input type="submit" class="btn btn-success my_btn" value="Добавить">
+            </div>
+            <input type="hidden" name="part_speech">
+            <div class="list-group part_speech_items">
+                Часть речи <br>
+                <a href="#" class="list-group-item" data-value="сущ">Существительное</a>
+                <a href="#" class="list-group-item" data-value="прил">Прилагательное</a>
+                <a href="#" class="list-group-item" data-value="наречие">Наречие</a>
+                <a href="#" class="list-group-item" data-value="глагол">Глагол</a>
+                <a href="#" class="list-group-item" data-value="числ">Числительное</a>
+                <a href="#" class="list-group-item" data-value="местоим">Местоимение</a>
+                <a href="#" class="list-group-item" data-value="союз">Союз</a>
+                <a href="#" class="list-group-item" data-value="предлог">Предлог</a>
+                <a href="#" class="list-group-item" data-value="частица">Частица</a>
+                <a href="#" class="list-group-item" data-value="междом">Междометие</a>
+            </div>
+        </div>
+    </form>
+{% endblock %}
